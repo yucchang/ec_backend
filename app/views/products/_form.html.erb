@@ -1,0 +1,34 @@
+
+<% if product.errors.any? %>
+<ul>
+  <% product.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<div>
+<%= form_for product do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :status %>
+  <%= f.select :status, Product.statuses.keys %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :list_price %>
+  <%= f.number_field :list_price %>
+
+  <%= f.label :sell_price %>
+  <%= f.number_field :sell_price %>
+
+  <%= f.label :SKU %>
+  <%= f.number_field :SKU %>
+
+  <%= f.submit %>
+<% end %>
+</div>
+
+<%= link_to 'Back', products_path %>
