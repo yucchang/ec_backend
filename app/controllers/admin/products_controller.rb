@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_action :find_product, only: [:edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -17,7 +17,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to admin_products_path
+      redirect_to admin_products_path, notice: 'Product is created.'
     else 
       render :new 
     end 
@@ -36,7 +36,7 @@ class Admin::ProductsController < ApplicationController
 
   def destroy 
     @product.destroy 
-    redirect_to admin_products_path
+    redirect_to admin_products_path, notice: 'Product is removed.'
   end 
 
   private 
@@ -46,7 +46,8 @@ class Admin::ProductsController < ApplicationController
                                     :description, 
                                     :list_price,
                                     :sell_price,
-                                    :SKU )
+                                    :SKU,
+                                    images:[])
   end 
 
   def find_product 

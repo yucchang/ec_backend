@@ -8,25 +8,32 @@
 <% end %>
 
 <div>
-<%= form_for product do |f| %>
+<%= form_for ([:admin, product]) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
-
+</br>
   <%= f.label :status %>
   <%= f.select :status, Product.statuses.keys %>
-
+</br>
   <%= f.label :description %>
   <%= f.text_area :description %>
-
+</br>
   <%= f.label :list_price %>
   <%= f.number_field :list_price %>
-
+</br>
   <%= f.label :sell_price %>
   <%= f.number_field :sell_price %>
-
+</br>
   <%= f.label :SKU %>
   <%= f.number_field :SKU %>
-
+</br>
+  <%= f.label :images %>
+  <%= f.file_field :images, multiple: true %>
+</br>
+  <% @product.images.each do |image| %>
+    <%= image_tag image %>
+  <% end %>
+</br>
   <%= f.submit %>
 <% end %>
 </div>

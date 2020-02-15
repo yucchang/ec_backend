@@ -1,0 +1,10 @@
+<h2><%= @product.name %></h2>
+
+<p>
+  <strong>Images:</strong>
+  <div>
+    <% @product.images.each do |image| %>
+      <%= image_tag image if @product.images.attached? %>
+    <% end %>
+  </div>
+</p>
