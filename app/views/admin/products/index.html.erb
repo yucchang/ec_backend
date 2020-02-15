@@ -1,13 +1,14 @@
-<h1>Product</h1>
+<h1>Product List</h1>
+<%= link_to 'Add Product', new_admin_product_path %>
 
 <% @products.each do |product| %>
 <div>
   <h3>Name:<%= product.name %></h3>
 </div>
 
-<!-- <div>
+<div>
   <p>Status:<%= product.status %></p>
-</div> -->
+</div>
 
 <div>
   <p>Description:<%= product.description %></p>
@@ -24,4 +25,6 @@
 <div>
   <p>SKU:<%= product.SKU %></p>
 </div>
+<%= link_to 'Edit', edit_admin_product_path(product) %>
+<%= link_to 'Delete', admin_product_path(product), method: :delete, data: {confirm: 'Sure to delete this product?'} %>
 <% end  %>
