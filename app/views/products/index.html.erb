@@ -6,18 +6,22 @@
 </div>
 
 <div>
-  <p>Description:<%= product.description %></p>
+<% product.images.each do |image| %>
+  <%= image_tag image.variant(resize_to_limit: [300, 250]) %>
+<% end %>
 </div>
 
-<div>
-  <p>List Price:<%= product.list_price %></p>
-</div>
+<p>
+  <div>
+    <strong>List Price: </strong>
+      <%= product.list_price %>
+  </div>
+</p>
 
-<div>
-  <p>Sell Price:<%= product.sell_price %></p>
-</div>
-
-<div>
-  <p>SKU:<%= product.SKU %></p>
-</div>
+<p>
+  <div>
+  <strong>Sell Price: </strong>
+    <%= product.sell_price %>
+  </div>
+</p>
 <% end  %>

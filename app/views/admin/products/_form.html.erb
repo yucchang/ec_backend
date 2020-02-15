@@ -31,7 +31,7 @@
   <%= f.file_field :images, multiple: true %>
 </br>
   <% @product.images.each do |image| %>
-    <%= image_tag image %>
+    <%= image_tag image.variant(resize: '500x300') if @product.images.attached? %>
   <% end %>
 </br>
   <%= f.submit %>
