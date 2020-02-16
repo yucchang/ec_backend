@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   layout 'frontend'
 
   def index
-    @products = Product.released 
+    @products = Product.released
   end 
 
   def show

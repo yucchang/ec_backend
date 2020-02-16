@@ -3,7 +3,7 @@ class Admin::ProductsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @products = Product.all.with_attached_images
+    @products = Product.all
   end 
 
   def show
@@ -27,8 +27,8 @@ class Admin::ProductsController < ApplicationController
   end 
 
   def update
-    if @product.update(product_params)
-      redirect_to admin_products_path
+    if @product.update(product_params) 
+      redirect_to admin_products_path 
     else 
       render :edit 
     end 
