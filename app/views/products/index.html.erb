@@ -1,27 +1,37 @@
 <h1 class="title">Product</h1>
 
-<% @products.each do |product| %>
-<div>
-  <h3>Name:<%= link_to product.name, product_path(product) %></h3>
-</div>
-
-<div>
-  <% product.images.each do |image| %>
-    <%= image_tag image.variant(resize_to_limit: [300, 250]) %>
-  <% end %>
-</div>
-
-<p>
-  <div>
-    <strong>List Price: </strong>
-      <%= product.list_price %>
+<section class="columns is-multiline">
+  <% @products.each do |product| %>
+  <div class="column is-3">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-3by4">
+          <% if product.images.attached? %>
+          <% image = product.images.first %>
+          <%= image_tag image.variant(resize_to_limit: [300, 250]) %>
+          <% else %>
+          <img src="https://fakeimg.pl/150x100/?retina=1&text=こんにちは&font=noto">
+          <% end %>
+        </figure>
+      </div>
+      <header class="card-header">
+        <h2 class="card-header-title is-centered"><%= link_to product.name, product_path(product) %></h2>
+      </header>
+      <div class="card-content">
+        <p>
+          <div>
+            <strong>List Price: </strong>
+            <%= product.list_price %>
+          </div>
+        </p>
+        <p>
+          <div>
+            <strong>Sell Price: </strong>
+            <%= product.sell_price %>
+          </div>
+        </p>
+      </div>
+    </div>
   </div>
-</p>
-
-<p>
-  <div>
-  <strong>Sell Price: </strong>
-    <%= product.sell_price %>
-  </div>
-</p>
-<% end  %>
+  <% end  %>
+</section>
