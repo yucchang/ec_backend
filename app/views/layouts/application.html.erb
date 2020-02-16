@@ -10,7 +10,29 @@
   </head>
 
   <body>
-    <%= notice %>
-    <%= yield %>
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <% if user_signed_in? %>
+                <%= link_to current_user.email, edit_user_registration_path, class: 'button' %>
+                <%= link_to "Logout", destroy_user_session_path, method: 'delete', class: 'button is-light' %>
+              <% else %>
+                <%= link_to "Sign up", new_user_registration_path, class: 'button is-primary' %>
+                <%= link_to "Sign in", new_user_session_path, class: 'button is-light' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="section">
+      <div class="container">
+        <%= notice %>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

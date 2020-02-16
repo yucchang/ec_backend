@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.released
+                       .with_attached_images
   end 
 
   def show

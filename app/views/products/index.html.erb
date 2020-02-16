@@ -6,9 +6,9 @@
 </div>
 
 <div>
-<% product.images.each do |image| %>
-  <%= image_tag image.variant(resize_to_limit: [300, 250]) %>
-<% end %>
+  <% product.images.each do |image| %>
+    <%= image_tag image.variant(resize_to_limit: [300, 250]) %>
+  <% end %>
 </div>
 
 <p>
