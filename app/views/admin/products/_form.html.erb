@@ -1,41 +1,99 @@
 <% if product.errors.any? %>
 <ul>
   <% product.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+  <li class="has-text-danger"><%= message %></li>
   <% end %>
 </ul>
 <% end %>
 
-<div>
+<!-- form -->
 <%= form_for ([:admin, product]) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</br>
-  <%= f.label :status %>
-  <%= f.select :status, Product.statuses.keys %>
-</br>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-</br>
-  <%= f.label :list_price %>
-  <%= f.number_field :list_price %>
-</br>
-  <%= f.label :sell_price %>
-  <%= f.number_field :sell_price %>
-</br>
-  <%= f.label :SKU %>
-  <%= f.number_field :SKU %>
-</br>
-  <% @product.images.each do |image| %>
-    <%= image_tag image.variant(resize: '500x300') if @product.images.attached? %>
-    <%= link_to 'Remove', remove_image_admin_product_path(@product, image), method: :delete %>
-  <% end %>
-</br>
-  <%= f.label :images %>
-  <%= f.file_field :images, multiple: true %>
-</br>
-  <%= f.submit %>
-<% end %>
+<div class="columns">
+  <div class="column is-5">
+    <div class="field">
+      <%= f.label :name, class:'label' %>
+      <div class="control">
+        <%= f.text_field :name, class:'input' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="column is-3">
+    <div class="field">
+      <%= f.label :status, class:'label' %>
+      <div class="select">
+        <%= f.select :status, Product.statuses.keys %>
+      </div>
+    </div>
+  </div>
 </div>
 
-<%= link_to 'Back', admin_products_path %>
+<div class="columns">
+  <div class="column is-5">
+    <div class="field">
+      <%= f.label :description, class:'label' %>
+      <div class="control">
+        <%= f.text_area :description, class:'input' %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="columns">
+  <div class="column">
+    <div class="field">
+      <%= f.label :images, class:'label' %>
+      <%= f.file_field :images, multiple: true %>
+    </div>
+  </div>
+</div>
+
+<div class="columns">
+  <div class="column is-2">
+    <div class="field">
+      <%= f.label :list_price, class:'label' %>
+      <div class="control">
+        <%= f.number_field :list_price, class:'input' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="column is-2">
+    <div class="field">
+      <%= f.label :sell_price, class:'label' %>
+      <div class="control">
+        <%= f.number_field :sell_price, class:'input' %>
+      </div>
+    </div>
+  </div>
+  <div class="column is-2">
+    <div class="field">
+      <%= f.label :SKU, class:'label' %>
+      <div class="control">
+        <%= f.number_field :SKU, class:'input' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="coulmns">
+  <div class="coulmn is-2">
+    <div class="field is-grouped">
+      <div class="control">
+        <%= f.submit class:'button is-primary' %>
+      </div>
+      <div class="control">
+        <%= link_to 'Back', admin_products_path, class:'button is-info' %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="image-block">
+<% @product.images.each do |image| %>
+  <div class="image-box">
+    <%= image_tag image.variant(resize: '500x300') if @product.images.attached? %>
+    <%= link_to 'Remove', remove_image_admin_product_path(@product, image), method: :delete, class:'button is-small is-danger' %>
+  </div>
+  <% end %>
+</div>

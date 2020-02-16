@@ -1,30 +1,22 @@
-<h1>Product List</h1>
-<%= link_to 'Add Product', new_admin_product_path %>
+<h1 class="title">Product List</h1>
 
-<% @products.each do |product| %>
-<div>
-  <h3>Name:<%= link_to product.name, admin_product_path(product) %></h3>
-</div>
+<%= link_to 'Add Product', new_admin_product_path, class:'button is-dark' %>
 
-<div>
-  <p>Status:<%= product.status %></p>
-</div>
+<section class="product-list columns is-multiline">
+  <% @products.each do |product| %>
+  <div class="column is-3">
+    <div class="card">
+      <div class="card-content">
+        <h2 class="title is-5">Name: <%= link_to product.name, admin_product_path(product) %></h2>
 
-<div>
-  <p>Description:<%= product.description %></p>
-</div>
-
-<div>
-  <p>List Price:<%= product.list_price %></p>
-</div>
-
-<div>
-  <p>Sell Price:<%= product.sell_price %></p>
-</div>
-
-<div>
-  <p>SKU:<%= product.SKU %></p>
-</div>
-<%= link_to 'Edit', edit_admin_product_path(product) %>
-<%= link_to 'Delete', admin_product_path(product), method: :delete, data: {confirm: 'Sure to delete this product?'} %>
-<% end  %>
+        <p class="title is-6 is-uppercase">Status: <%= product.status %></p>
+        <p>List Price: <%= product.list_price %></p>
+        <p>Sell Price: <%= product.sell_price %></p>
+        <p>SKU: <%= product.SKU %></p>
+        <%= link_to 'Edit', edit_admin_product_path(product), class:'button is-small is-info' %>
+        <%= link_to 'Delete', admin_product_path(product), method: :delete, class:'button is-small is-danger', data: {confirm: 'Sure to delete this product?'} %>
+      </div>
+    </div>
+  </div>
+  <% end  %>
+</section>
