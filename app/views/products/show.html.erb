@@ -1,5 +1,21 @@
-<h1> <%= @product.name %></h1>
-
+<h1 class="title is-3"> <%= @product.name %></h1>
+<p>
+  <div>
+    <strong>Description: </strong>
+  </div>
+</p>
+<p>
+  <div>
+    <strong>Sell price: </strong>
+    <%= @product.sell_price %>
+  </div>
+</p>
+<p>
+  <div>
+    <strong>SKU: </strong>
+    <%= @product.SKU %>
+  </div>
+</p>
 
 <div>
 <% @product.images.each do |image| %>
@@ -7,16 +23,5 @@
 <% end %>
 </div>
 
-<p>
-  <div>
-    <strong>Description: </strong>
-  </div>
-</p>
 
-<p>
-  <div>
-    <strong>Sell price: </strong>
-    <%= @product.sell_price %>
-  </div>
-</p>
 
