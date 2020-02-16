@@ -28,6 +28,7 @@
 </br>
   <% @product.images.each do |image| %>
     <%= image_tag image.variant(resize: '500x300') if @product.images.attached? %>
+    <%= link_to 'Remove', remove_image_admin_product_path(@product, image), method: :delete %>
   <% end %>
 </br>
   <%= f.label :images %>

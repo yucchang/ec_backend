@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :destroy, :remove_image]
   before_action :authenticate_user!
 
   def index
@@ -38,6 +38,11 @@ class Admin::ProductsController < ApplicationController
     @product.destroy 
     redirect_to admin_products_path, notice: 'Product is removed.'
   end 
+
+  def remove_image 
+    @product.images.find(params[:format]).purge
+    render :edit
+  end
 
   private 
   def product_params

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   # backend
   namespace :admin do 
     root "products#index"
-    resources :products 
+    resources :products do 
+      delete :remove_image, on: :member
+    end 
   end 
 end
