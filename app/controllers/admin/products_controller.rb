@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :edit, :update, :destroy, :remove_image]
+  before_action :find_product, except: [:index, :new]
   before_action :authenticate_user!
 
   def index
