@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_action :find_product, except: [:index, :new]
+  before_action :find_product, except: [:index, :new, :create]
   before_action :authenticate_user!
 
   def index
@@ -27,7 +27,15 @@ class Admin::ProductsController < ApplicationController
   end 
 
   def update
+    p "="*50
+    p "#{params}"
+    p "="*50 
     if @product.update(product_params) 
+      if params[:product][:images].present?
+        params[:product][:images].each do |image|
+          @product.images.attach(image)
+        end 
+      end 
       redirect_to admin_products_path 
     else 
       render :edit 
@@ -51,8 +59,7 @@ class Admin::ProductsController < ApplicationController
                                     :description, 
                                     :list_price,
                                     :sell_price,
-                                    :SKU,
-                                    images:[])
+                                    :SKU)
   end 
 
   def find_product 
