@@ -27,15 +27,15 @@ class Admin::ProductsController < ApplicationController
   end 
 
   def update
-    p "="*50
-    p "#{params}"
-    p "="*50 
-    if @product.update(product_params) 
+    # p "="*50
+    # p "#{update_params}"
+    # p "="*50 
+    # p "#{params[:product][:images]}"
+    # p "="*50 
+    if @product.update(update_params)
       if params[:product][:images].present?
-        params[:product][:images].each do |image|
-          @product.images.attach(image)
-        end 
-      end 
+        @product.images.attach(params[:product][:images])
+      end
       redirect_to admin_products_path 
     else 
       render :edit 
@@ -54,6 +54,16 @@ class Admin::ProductsController < ApplicationController
 
   private 
   def product_params
+    params.require(:product).permit(:name, 
+                                    :status, 
+                                    :description, 
+                                    :list_price,
+                                    :sell_price,
+                                    :SKU,
+                                    images:[])
+  end 
+
+  def update_params
     params.require(:product).permit(:name, 
                                     :status, 
                                     :description, 
